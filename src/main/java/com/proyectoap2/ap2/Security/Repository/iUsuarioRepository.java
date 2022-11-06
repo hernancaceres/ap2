@@ -1,4 +1,5 @@
-package com.proyectoap2.ap2.Repository;
+
+package com.proyectoap2.ap2.Security.Repository;
 
 import com.proyectoap2.ap2.Security.Entity.Usuario;
 import java.util.Optional;
@@ -14,3 +15,4 @@ public interface iUsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     boolean existsByEmail(String email);
 }
+

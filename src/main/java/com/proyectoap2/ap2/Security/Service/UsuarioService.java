@@ -1,8 +1,9 @@
 
 package com.proyectoap2.ap2.Security.Service;
 
-import com.proyectoap2.ap2.Repository.iUsuarioRepository;
+
 import com.proyectoap2.ap2.Security.Entity.Usuario;
+import com.proyectoap2.ap2.Security.Repository.iUsuarioRepository;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
