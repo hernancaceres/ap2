@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/personas")
 //@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = "https://frontendap2.web.app")
+@CrossOrigin(origins = "https://ap-backend-harinatha777.koyeb.app/")
 public class PersonaController {
 
     @Autowired
@@ -38,36 +38,11 @@ public class PersonaController {
         if (!personaService.existsById(id)) {
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
         }
-        Persona experiencia = personaService.getOne(id).get();
-        return new ResponseEntity(experiencia, HttpStatus.OK);
+        Persona persona = personaService.getOne(id).get();
+        return new ResponseEntity(persona, HttpStatus.OK);
     }
 
-    /*
-    @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") int id) {
-        if (!experienciaService.existsById(id)) {
-            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        }
-        experienciaService.delete(id);
-        return new ResponseEntity(new Mensaje("producto eliminado"), HttpStatus.OK);
-    }
-   @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody ExperienciaDto experienciaDto) {
-        if (StringUtils.isBlank(experienciaDto.getNombreE())) {
-            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        }
-        if (experienciaService.existsByNombreE(experienciaDto.getNombreE())) {
-            return new ResponseEntity(new Mensaje("Esa experiencia existe"), HttpStatus.BAD_REQUEST);
-        }
-
-        Experiencia experiencia = new Experiencia(experienciaDto.getNombreE(), experienciaDto.getDescripcionE());
-        experienciaService.save(experiencia);
-
-        return new ResponseEntity(new Mensaje("Experiencia agregada"), HttpStatus.OK);
-    }
-     */
+   
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoPersona dtoPersona) {

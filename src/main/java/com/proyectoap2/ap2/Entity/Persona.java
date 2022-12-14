@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 @Entity
 public class Persona {
 
@@ -26,13 +25,13 @@ public class Persona {
     @NotNull
     @Size(min = 1, max = 50, message = "no cumple con la longitud")
     private String apellido;
-    
+
     @NotNull
     private String descripcion;
 
-    
     private String img;
 
+    //Constructores
     public Persona() {
     }
 
@@ -43,6 +42,7 @@ public class Persona {
         this.img = img;
     }
 
+    //Getters and Setters
     public int getId() {
         return id;
     }
@@ -82,7 +82,5 @@ public class Persona {
     public void setImg(String img) {
         this.img = img;
     }
-    
-    
 
 }

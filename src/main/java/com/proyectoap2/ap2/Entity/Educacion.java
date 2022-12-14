@@ -1,24 +1,37 @@
-package com.proyectoap2.ap2.Dto;
+package com.proyectoap2.ap2.Entity;
 
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class ExperienciaDto {
+@Entity
+public class Educacion {
 
-    @NotBlank
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nombreE;
-    @NotBlank
     private String descripcionE;
 
     //Constructores
-    public ExperienciaDto() {
+    public Educacion() {
     }
 
-    public ExperienciaDto(String nombreE, String descripcionE) {
+    public Educacion(String nombreE, String descripcionE) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
     }
 
     //Getters and Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getNombreE() {
         return nombreE;
     }
