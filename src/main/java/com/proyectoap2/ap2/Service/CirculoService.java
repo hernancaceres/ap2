@@ -23,8 +23,8 @@ public class CirculoService {
         return circuloRepository.findById(id);
     }
 
-    public Optional<Circulo> getByNombre(String nombreC) {
-        return circuloRepository.findByNombre(nombreC);
+    public Optional<Circulo> getByNombreC(String nombreC) {
+        return circuloRepository.findByNombreC(nombreC);
     }
 
     public void save(Circulo skill) {
@@ -39,7 +39,7 @@ public class CirculoService {
         return circuloRepository.existsById(id);
     }
 
-    public boolean existsByNombre(String nombreC) {
-        return circuloRepository.existsByNombre(nombreC);
+    public boolean existsByNombreC(String nombreC) {
+        return circuloRepository.existsByNombreC(nombreC);
     }
 }

@@ -12,7 +12,7 @@ public class Circulo {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nombre;
+    private String nombreC;
     private int porcentaje;
     
     //Constructores
@@ -20,11 +20,12 @@ public class Circulo {
     public Circulo() {
     }
 
-    public Circulo(String nombre, int porcentaje) {
-        this.nombre = nombre;
+
+    public Circulo(String nombreC, int porcentaje) {
+        this.nombreC = nombreC;
         this.porcentaje = porcentaje;
     }
-    
+      
     //Getters and Setters
 
     public int getId() {
@@ -35,12 +36,12 @@ public class Circulo {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreC() {
+        return nombreC;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreC(String nombreC) {
+        this.nombreC = nombreC;
     }
 
     public int getPorcentaje() {
@@ -50,6 +51,8 @@ public class Circulo {
     public void setPorcentaje(int porcentaje) {
         this.porcentaje = porcentaje;
     }
+    
+  
     
     
     

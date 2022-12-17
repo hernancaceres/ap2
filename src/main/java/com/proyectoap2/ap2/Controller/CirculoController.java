@@ -56,7 +56,7 @@ public class CirculoController {
         if (StringUtils.isBlank(circuloDto.getNombreC())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if (circuloService.existsByNombre(circuloDto.getNombreC())) {
+        if (circuloService.existsByNombreC(circuloDto.getNombreC())) {
             return new ResponseEntity(new Mensaje("Esa skill ya existe"), HttpStatus.BAD_REQUEST);
         }
 
@@ -73,7 +73,7 @@ public class CirculoController {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
         }
         //Compara nombre de skills
-        if (circuloService.existsByNombre(circuloDto.getNombreC()) && circuloService.getByNombre(circuloDto.getNombreC()).get()
+        if (circuloService.existsByNombreC(circuloDto.getNombreC()) && circuloService.getByNombreC(circuloDto.getNombreC()).get()
                 .getId() != id) {
             return new ResponseEntity(new Mensaje("Esa skill ya existe"), HttpStatus.BAD_REQUEST);
         }
@@ -83,7 +83,7 @@ public class CirculoController {
         }
 
         Circulo circulo = circuloService.getOne(id).get();
-        circulo.setNombre(circuloDto.getNombreC());
+        circulo.setNombreC(circuloDto.getNombreC());
         circulo.setPorcentaje(circuloDto.getPorcentaje());
 
         circuloService.save(circulo);

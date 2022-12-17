@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CirculoRepository extends JpaRepository<Circulo, Integer>{
     
-     Optional<Circulo> findByNombre(String nombreC);
-    public boolean existsByNombre(String nombreC);
+     Optional<Circulo> findByNombreC(String nombreC);
+    public boolean existsByNombreC(String nombreC);
 }
