@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,29 +42,43 @@ public class PersonaController {
         return new ResponseEntity(persona, HttpStatus.OK);
     }
 
+        @PostMapping("/create")
+    public ResponseEntity<?> create(@RequestBody DtoPersona dtoPersona) {
+        if (StringUtils.isBlank(dtoPersona.getNombre())) {
+            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        }
+        if (personaService.existsByNombre(dtoPersona.getNombre())) {
+            return new ResponseEntity(new Mensaje("Esa persona ya existe"), HttpStatus.BAD_REQUEST);
+        }
+
+        Persona persona = new Persona(dtoPersona.getNombre(), dtoPersona.getApellido(), dtoPersona.getDescripcion(), dtoPersona.getDescripcion());
+        personaService.save(persona);
+
+        return new ResponseEntity(new Mensaje("Skill agregada"), HttpStatus.OK);
+    }
    
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoPersona dtopersona) {
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoPersona dtoPersona) {
         //Validamos si existe el ID
         if (!personaService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
         }
         //Compara nombre de experiencias
-        if (personaService.existsByNombre(dtopersona.getNombre()) && personaService.getByNombre(dtopersona.getNombre()).get().getId() != id) {
+        if (personaService.existsByNombre(dtoPersona.getNombre()) && personaService.getByNombre(dtoPersona.getNombre()).get().getId() != id) {
             return new ResponseEntity(new Mensaje("Esa persona ya existe"), HttpStatus.BAD_REQUEST);
         }
         //No puede estar vacio
-        if (StringUtils.isBlank(dtopersona.getNombre())) {
+        if (StringUtils.isBlank(dtoPersona.getNombre())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
 
         Persona persona = personaService.getOne(id).get();
 
-        persona.setNombre(dtopersona.getNombre());
-        persona.setApellido(dtopersona.getApellido());
-        persona.setDescripcion(dtopersona.getDescripcion());
-        persona.setImg(dtopersona.getImg());
+        persona.setNombre(dtoPersona.getNombre());
+        persona.setApellido(dtoPersona.getApellido());
+        persona.setDescripcion(dtoPersona.getDescripcion());
+        persona.setImg(dtoPersona.getImg());
 
         personaService.save(persona);
         

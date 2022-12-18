@@ -1,11 +1,9 @@
-
 package com.proyectoap2.ap2.Dto;
 
 import javax.validation.constraints.NotBlank;
 
-
 public class DtoPersona {
-   
+
     @NotBlank
     private String nombre;
     @NotBlank
@@ -15,6 +13,7 @@ public class DtoPersona {
     @NotBlank
     private String img;
 
+    //Constructores
     public DtoPersona() {
     }
 
@@ -25,6 +24,7 @@ public class DtoPersona {
         this.img = img;
     }
 
+    //Getters and Setters
     public String getNombre() {
         return nombre;
     }
@@ -56,9 +56,4 @@ public class DtoPersona {
     public void setImg(String img) {
         this.img = img;
     }
-
-  
-    
-    
-    
 }
