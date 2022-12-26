@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/personas")
-@CrossOrigin(origins = { "https://frontendap2.web.app", "http://localhost:4200" }) 
+@CrossOrigin(origins = {"https://frontendap2.web.app", "http://localhost:4200"})
 public class PersonaController {
 
     @Autowired
@@ -42,7 +41,7 @@ public class PersonaController {
         return new ResponseEntity(persona, HttpStatus.OK);
     }
 
-        @PostMapping("/create")
+    @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody DtoPersona dtoPersona) {
         if (StringUtils.isBlank(dtoPersona.getNombre())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -51,13 +50,12 @@ public class PersonaController {
             return new ResponseEntity(new Mensaje("Esa persona ya existe"), HttpStatus.BAD_REQUEST);
         }
 
-        Persona persona = new Persona(dtoPersona.getNombre(), dtoPersona.getApellido(), dtoPersona.getDescripcion(), dtoPersona.getDescripcion());
+        Persona persona = new Persona(dtoPersona.getNombre(), dtoPersona.getApellido(), dtoPersona.getDescripcion(), dtoPersona.getImg());
         personaService.save(persona);
 
-        return new ResponseEntity(new Mensaje("Skill agregada"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("Persona agregada"), HttpStatus.OK);
     }
-   
-    @PreAuthorize("hasRole('ADMIN')")
+
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoPersona dtoPersona) {
         //Validamos si existe el ID
@@ -81,7 +79,7 @@ public class PersonaController {
         persona.setImg(dtoPersona.getImg());
 
         personaService.save(persona);
-        
+
         return new ResponseEntity(new Mensaje("Persona actualizada"), HttpStatus.OK);
 
     }
