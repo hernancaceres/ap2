@@ -27,8 +27,8 @@ public class EducacionService {
         return educacionRepository.findById(id);
     }
 
-    public Optional<Educacion> getByNmbreE(String nombreE) {
-        return educacionRepository.findByNombreE(nombreE);
+    public Optional<Educacion> getByNmbreEdu(String nombreEdu) {
+        return educacionRepository.findByNombreEdu(nombreEdu);
     }
 
     public void save(Educacion educacion) {
@@ -43,8 +43,8 @@ public class EducacionService {
         return educacionRepository.existsById(id);
     }
 
-    public boolean existsByNombreE(String nombreE) {
-        return educacionRepository.existsByNombreE(nombreE);
+    public boolean existsByNombreEdu(String nombreEdu) {
+        return educacionRepository.existsByNombreEdu(nombreEdu);
     }
 
 }

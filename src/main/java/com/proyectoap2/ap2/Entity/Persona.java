@@ -29,7 +29,7 @@ public class Persona {
     private String apellido;
 
     @NotNull
-   
+    @Column(length = 1000)
     private String descripcion;
 
     private String img;

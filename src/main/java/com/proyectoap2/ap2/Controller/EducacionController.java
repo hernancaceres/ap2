@@ -54,15 +54,15 @@ public class EducacionController {
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody EducacionDto dtoeducacion) {
-        if (StringUtils.isBlank(dtoeducacion.getNombreE())) {
+        if (StringUtils.isBlank(dtoeducacion.getNombreEdu())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if (educacionService.existsByNombreE(dtoeducacion.getNombreE())) {
+        if (educacionService.existsByNombreEdu(dtoeducacion.getNombreEdu())) {
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
 
         Educacion educacion = new Educacion(
-                dtoeducacion.getNombreE(), dtoeducacion.getDescripcionE()
+                dtoeducacion.getNombreEdu(),dtoeducacion.getInstitucionEdu(),dtoeducacion.getCarreraEdu(),dtoeducacion.getFechaInicioEdu(),dtoeducacion.getFechaFinEdu(),dtoeducacion.getPaisEdu(), dtoeducacion.getDescripcionEdu(), dtoeducacion.getImgEdu()
         );
         educacionService.save(educacion);
         return new ResponseEntity(new Mensaje("Educacion creada"), HttpStatus.OK);
@@ -74,17 +74,24 @@ public class EducacionController {
         if (!educacionService.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
-        if (educacionService.existsByNombreE(dtoeducacion.getNombreE()) && educacionService.getByNmbreE(dtoeducacion.getNombreE()).get().getId() != id) {
+        if (educacionService.existsByNombreEdu(dtoeducacion.getNombreEdu()) && educacionService.getByNmbreEdu(dtoeducacion.getNombreEdu()).get().getId() != id) {
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
-        if (StringUtils.isBlank(dtoeducacion.getNombreE())) {
+        if (StringUtils.isBlank(dtoeducacion.getNombreEdu())) {
             return new ResponseEntity(new Mensaje("El campo no puede estar vacio"), HttpStatus.BAD_REQUEST);
         }
 
         Educacion educacion = educacionService.getOne(id).get();
 
-        educacion.setNombreE(dtoeducacion.getNombreE());
-        educacion.setDescripcionE(dtoeducacion.getDescripcionE());
+        educacion.setNombreEdu(dtoeducacion.getNombreEdu());
+        educacion.setInstitucionEdu(dtoeducacion.getInstitucionEdu());
+        educacion.setCarreraEdu(dtoeducacion.getCarreraEdu());
+        educacion.setFechaInicioEdu(dtoeducacion.getFechaInicioEdu());
+        educacion.setFechaFinEdu(dtoeducacion.getFechaFinEdu());
+        educacion.setPaisEdu(dtoeducacion.getPaisEdu());
+        educacion.setDescripcionE(dtoeducacion.getDescripcionEdu());
+        educacion.setImgEdu(dtoeducacion.getImgEdu());
+        
 
         educacionService.save(educacion);
 

@@ -1,5 +1,6 @@
 package com.proyectoap2.ap2.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class Proyecto {
     private String nombreP;
 
     @NotNull
+    @Column(length = 1000)
     private String descripcionP;
 
     private String imgP;
