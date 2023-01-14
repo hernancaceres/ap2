@@ -100,7 +100,7 @@ public class Educacion {
         return descripcionEdu;
     }
 
-    public void setDescripcionE(String descripcionEdu) {
+    public void setDescripcionEdu(String descripcionEdu) {
         this.descripcionEdu = descripcionEdu;
     }
 
